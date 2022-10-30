@@ -1,8 +1,26 @@
 [
   {
     "id": 1,
-    "name": "rock"
+    "name": "rock",
+    "beats": "scissors",
+    "beatsId": 3,
+    "loose": "paper",
+    "looseId": 2
   },
-  { "id": 2, "name": "paper" },
-  { "id": 3, "name": "scissors" }
+  {
+    "id": 2,
+    "name": "paper",
+    "beats": "rock",
+    "beatsId": 1,
+    "loose": "scissors",
+    "looseId": 3
+  },
+  {
+    "id": 3,
+    "name": "scissors",
+    "beats": "paper",
+    "beatsId": 2,
+    "loose": "rock",
+    "looseId": 1
+  }
 ]

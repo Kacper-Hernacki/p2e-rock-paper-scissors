@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { getImage } from "../helpers";
 
 const Container = styled.div`
@@ -7,6 +7,12 @@ const Container = styled.div`
   cursor: pointer;
   margin: 10px;
   border-radius: 10%;
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      background-color: yellow;
+    `}
 
   &:hover {
     background-color: yellow;
@@ -18,11 +24,11 @@ const Image = styled.img`
   object-fit: contain;
 `;
 
-export default function Choice({ name, id, chooseItem }) {
+export default function Choice({ name, id, chooseItem, selected }) {
   const cover = getImage(name);
 
   return (
-    <Container onClick={chooseItem(id)}>
+    <Container selected={selected} onClick={() => chooseItem(id)}>
       <Image src={cover} />
     </Container>
   );

@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import Choice from "./Choice";
 import choicesList from "./choicesList";
+import Play from "./Play";
 
 export default function Choices() {
   const [selectedItem, setSelectedItem] = useState();
 
-  const chooseItem = async (id) => {
+  const chooseItem = (id) => {
     setSelectedItem(id);
   };
 
-  console.log(selectedItem);
+  const isSelected = (id) => {
+    if (id === selectedItem) {
+      return true;
+    }
+    return false;
+  };
 
   return (
     <div>
@@ -20,9 +26,11 @@ export default function Choices() {
             id={item?.id}
             name={item?.name}
             chooseItem={chooseItem}
+            selected={isSelected(id + 1)}
           />
         );
       })}
+      {selectedItem ? <Play itemId={selectedItem} /> : null}
     </div>
   );
 }
