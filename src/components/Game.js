@@ -2,8 +2,41 @@ import React, { useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { checkIfWon, getRandomInt } from "../helpers";
 import choicesList from "./choicesList";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { won, lost, draw } from "../slices/slice";
+import styled from "styled-components";
+
+const Container = styled.div`
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+`;
+
+const GameDetails = styled.div`
+  max-width: 500px;
+  max-height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const Image = styled.img`
+  width: 200px;
+  object-fit: contain;
+`;
+
+const Title = styled.h1``;
+
+const PlayButton = styled.button`
+  width: 400px;
+  height: 100px;
+  font-size: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 35px;
+`;
 
 const renderHeader = (param) => {
   switch (param) {
@@ -35,15 +68,20 @@ const renderBanner = ({
   computersItemCover,
 }) => {
   return (
-    <>
-      <h1>{renderHeader(won)}</h1>
-      <img src={itemCover} />
-      <img src={computersItemCover} />
-      <h1>{`${item} ${renderDetails(won)} ${opponent}`}</h1>
-      <Link to="/">
-        <button>Play again</button>
-      </Link>
-    </>
+    <Container>
+      <GameDetails>
+        <Title>{renderHeader(won)}</Title>
+        <div>
+          <Image src={itemCover} />
+          <Image src={computersItemCover} />
+        </div>
+
+        <Title>{`${item} ${renderDetails(won)} ${opponent}`}</Title>
+        <Link to="/">
+          <PlayButton>Play again</PlayButton>
+        </Link>
+      </GameDetails>
+    </Container>
   );
 };
 
@@ -58,13 +96,15 @@ export default function Game() {
     choicesList
   );
 
+  console.log(result);
+
   useEffect(() => {
-    if (result?.won) {
+    if (result?.won === true) {
       dispatch(won());
-    } else if (!result?.won) {
-      dispatch(lost());
-    } else {
+    } else if (result?.won === "draw") {
       dispatch(draw());
+    } else {
+      dispatch(lost());
     }
   }, [result]);
 

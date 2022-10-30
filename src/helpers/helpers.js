@@ -29,7 +29,6 @@ export const checkIfWon = (selectedItem, computersItem, choices) => {
   const selectedItemDetails = choices?.find((item) => item.id === selectedItem);
   let battleDetails = {};
   const itemCover = getImage(selectedItemDetails?.name);
-  const computersItemCover = getImage(selectedItemDetails?.beats);
 
   if (selectedItemDetails?.beatsId === computersItem) {
     return (battleDetails = {
@@ -37,7 +36,7 @@ export const checkIfWon = (selectedItem, computersItem, choices) => {
       item: selectedItemDetails?.name,
       opponent: selectedItemDetails?.beats,
       itemCover: itemCover,
-      computersItemCover: computersItemCover,
+      computersItemCover: getImage(selectedItemDetails?.beats),
     });
   } else if (selectedItemDetails?.looseId === computersItem) {
     return (battleDetails = {
@@ -45,7 +44,7 @@ export const checkIfWon = (selectedItem, computersItem, choices) => {
       item: selectedItemDetails?.name,
       opponent: selectedItemDetails?.loose,
       itemCover: itemCover,
-      computersItemCover: computersItemCover,
+      computersItemCover: getImage(selectedItemDetails?.loose),
     });
   } else {
     return (battleDetails = {
@@ -53,7 +52,7 @@ export const checkIfWon = (selectedItem, computersItem, choices) => {
       item: selectedItemDetails?.name,
       opponent: selectedItemDetails?.name,
       itemCover: itemCover,
-      computersItemCover: computersItemCover,
+      computersItemCover: itemCover,
     });
   }
 };
