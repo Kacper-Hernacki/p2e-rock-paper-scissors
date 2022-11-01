@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import styled from "styled-components";
 
 export default function Counter() {
   const wins = useSelector((state) => state.counter.wins);
@@ -8,14 +9,24 @@ export default function Counter() {
   const total = wins + losses + draws;
 
   return (
-    <div>
+    <Container>
       <h1>Total games: {total}</h1>
       <p>
-        <span>wins:</span> {wins}
-        <span>losses:</span>
-        {losses}
-        <span>draws:</span> {draws}
+        <span>{wins} wins</span>
+        <span>{losses} losses</span>
+        <span>{draws} draws</span>
       </p>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  p {
+    margin-top: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+  span {
+    margin-left: 2px;
+  }
+`;

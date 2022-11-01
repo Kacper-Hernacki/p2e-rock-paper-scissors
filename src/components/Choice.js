@@ -7,15 +7,16 @@ const Container = styled.div`
   cursor: pointer;
   margin: 10px;
   border-radius: 10%;
+  transition: 300ms ease-in-out;
 
   ${({ selected }) =>
     selected &&
     css`
-      background-color: yellow;
+      background-color: aliceblue;
     `}
 
   &:hover {
-    background-color: yellow;
+    background-color: aliceblue;
   }
 `;
 

@@ -15,6 +15,10 @@ const SelectModule = styled.div`
   display: grid;
   place-items: center;
 
+  h1 {
+    margin-bottom: 20px;
+  }
+
   button {
     margin-top: 40px;
   }
@@ -45,6 +49,7 @@ export default function Choices() {
   return (
     <Container>
       <SelectModule>
+        <h1>Pick an item</h1>
         <ChoicesContainer>
           {choicesList?.map((item, id) => {
             return (
